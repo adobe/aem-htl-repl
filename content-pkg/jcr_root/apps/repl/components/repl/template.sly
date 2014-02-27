@@ -1,0 +1,7 @@
+<html data-sly-use-obj="logic.js">
+  <body class="ampersand">
+    
+    <p>Hello ${resource.path}</p>
+    
+  </body>
+</html> 

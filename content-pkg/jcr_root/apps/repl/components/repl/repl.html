@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Use JS Testing</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+
+        <style type="text/css" media="screen">
+
+            .row {
+                margin-top: 80px;
+            }
+
+            .panel-body {
+                padding: 0;
+            }
+
+            .panel-heading {
+                padding: 2px 0 2px 0;
+            }
+
+            .editor {
+                position: relative;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                height: 310px;
+            }
+
+            #divider {
+              border-left: 1px dotted;
+              width: 1px;
+              
+              height: 100%;
+            }
+
+            #output {
+                /*width: 45%;
+                height: 100%;
+                float: right !important;*/
+            }
+
+            #output iframe {
+              border: none;
+            }
+
+            .page-header {
+              position: absolute;
+              top: -50px;
+              right: 700px;
+            }
+
+
+        </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+
+<div class="page-header">
+    <h1>Sightly  <small>REPL</small></h1>
+</div>
+
+<div class="row" id="main">
+    <div id="left-panel" class="col-md-5">
+        <div id="templateContainer">
+            <div class="panel panel-info">
+                <div class="panel-heading">template.sly</div>
+                <div class="panel-body">
+                    <div id="templateEditor" class="editor">
+                        NOT INITIALIZED
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+        <div id="logicContainer">
+            <div class="panel panel-info">
+                <div class="panel-heading">logic.js</div>
+                <div class="panel-body">
+                    <div id="logicEditor" class="editor">
+                        NOT INITIALIZED
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="output" class="col-md-7">
+        <iframe id="outputFrame" src="/content/repl.template.html"></iframe>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var TEMPLATE_URL = '/apps/repl/components/repl/template.sly';
+    var LOGIC_URL = '/apps/repl/components/repl/logic.js';
+
+    function saveReload(url, value) {
+        $.ajax({
+            url: url,
+            type: 'PUT',
+            data: value,
+            success: function() {
+                document.getElementById('outputFrame').contentDocument.location.reload(true);
+            }
+        });
+    }
+
+    function initEditor(id, url, mode) {
+        var editor = ace.edit(id);
+        editor.renderer.setShowGutter(false);
+        $.get(url, function(data) {
+            editor.setValue(data);
+            var session = editor.getSession();
+            session.on('change', function() {
+                var content = editor.getValue();
+                saveReload(url, content);
+            });
+            session.setUseWorker(false);
+            session.setMode(mode);
+            
+        });
+        return editor;
+    }
+
+    initEditor('templateEditor', TEMPLATE_URL, 'ace/mode/html');
+    initEditor('logicEditor', LOGIC_URL, 'ace/mode/javascript');
+</script>
+</body>
+</html>
