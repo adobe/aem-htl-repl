@@ -1,7 +1,7 @@
-<html data-sly-use-obj="logic.js">
-  <body class="ampersand">
-    
-    <p>Hello ${resource.path}</p>
-    
-  </body>
-</html> 
+<html data-sly-use-bean="logic.js">
+    <body>
+        <p data-sly-test="${bean.message}">
+            Hello: ${bean.message}
+        </p>
+    </body>
+</html>

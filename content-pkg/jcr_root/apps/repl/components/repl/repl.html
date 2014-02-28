@@ -17,8 +17,8 @@
 
         <style type="text/css" media="screen">
 
-            .row {
-                margin-top: 80px;
+            #main {
+                margin-top: 0px;
             }
 
             .panel-body {
@@ -45,20 +45,21 @@
               height: 100%;
             }
 
-            #output {
-                /*width: 45%;
-                height: 100%;
-                float: right !important;*/
+            .tall {
+                height: 650px;
             }
 
             #output iframe {
               border: none;
+              width: 100%;
             }
 
             .page-header {
-              position: absolute;
-              top: -50px;
-              right: 700px;
+              margin: 0px;
+            }
+
+            .page-header h1 {
+                margin: 0px;
             }
 
 
@@ -74,41 +75,48 @@
 <body>
 
 <div class="page-header">
-    <h1>Sightly  <small>REPL</small></h1>
+    <h1 class="center">Sightly  <small>REPL</small></h1>
 </div>
 
 <div class="row" id="main">
     <div id="left-panel" class="col-md-5">
         <div id="templateContainer">
-            <div class="panel panel-info">
-                <div class="panel-heading">template.sly</div>
-                <div class="panel-body">
-                    <div id="templateEditor" class="editor">
-                        NOT INITIALIZED
-                    </div>
-                </div>
-            </div>        
+            <p class="lead">template.sly</p>
+            <div id="templateEditor" class="editor">
+                NOT INITIALIZED
+            </div>
         </div>
 
         <div id="logicContainer">
-            <div class="panel panel-info">
-                <div class="panel-heading">logic.js</div>
-                <div class="panel-body">
-                    <div id="logicEditor" class="editor">
-                        NOT INITIALIZED
-                    </div>
-                </div>
+            <p class="lead">logic.js</p>        
+            <div id="logicEditor" class="editor">
+                NOT INITIALIZED
             </div>
         </div>
     </div>
     <div id="output" class="col-md-7">
-        <iframe id="outputFrame" src="/content/repl.template.html"></iframe>
+        <div class="row">
+            <p class="lead col-md-8">repl.template.html</p>
+            <ul class="nav nav-pills col-md-4">
+                <li class="active"><a data-toggle="tab" href="#" id="view-selector">VIEW</a></li>
+                <li><a data-toggle="tab" href="#" id="source-selector">SOURCE</a></li>
+                <li><a data-toggle="tab" href="#" id="java-selector">JAVA</a></li>
+            </ul>
+        </div>
+        <iframe id="outputFrame" src="/content/repl.template.html" class="output-view tall"></iframe>
+        <div id="sourceEditor" class="editor output-view tall" style="display: none"></div>
+        <div id="javaEditor" class="editor output-view tall" style="display: none"></div>
     </div>
 </div>
+
+
+
 <script type="text/javascript">
 
     var TEMPLATE_URL = '/apps/repl/components/repl/template.sly';
     var LOGIC_URL = '/apps/repl/components/repl/logic.js';
+    var PAGE_URL = '/content/repl.template.html';
+    var JAVA_URL = '/var/classes/apps/repl/components/repl/SightlyJava_template.java';
 
     function saveReload(url, value) {
         $.ajax({
@@ -116,30 +124,109 @@
             type: 'PUT',
             data: value,
             success: function() {
-                document.getElementById('outputFrame').contentDocument.location.reload(true);
+                refreshOutput();
             }
         });
     }
 
-    function initEditor(id, url, mode) {
-        var editor = ace.edit(id);
+    function configure(editor, data, url, mode, readOnly) {
         editor.renderer.setShowGutter(false);
-        $.get(url, function(data) {
-            editor.setValue(data);
-            var session = editor.getSession();
+        editor.setValue(data);
+        editor.clearSelection();
+        editor.setShowPrintMargin(false);
+        editor.setHighlightActiveLine(false);
+        var session = editor.getSession();
+        if (!readOnly) {
             session.on('change', function() {
                 var content = editor.getValue();
                 saveReload(url, content);
-            });
-            session.setUseWorker(false);
-            session.setMode(mode);
-            
-        });
-        return editor;
+            });    
+        }
+        editor.setReadOnly(!!readOnly);
+        session.setUseWorker(false);
+        session.setMode(mode);
     }
 
-    initEditor('templateEditor', TEMPLATE_URL, 'ace/mode/html');
-    initEditor('logicEditor', LOGIC_URL, 'ace/mode/javascript');
+    function initEditor(id, url, mode, cb) {
+        $.ajax(url, {
+            type: 'GET',
+            dataType: 'text',
+            processData: false,
+            success: function(data) {
+                var editor = ace.edit(id);
+                configure(editor, data, url, mode);
+                if (cb) {
+                    cb(editor);    
+                }
+            },
+            error: function(xhr, status, err) {
+                console.error('Error thrown: ' + err);
+            }
+        });
+    }
+
+    initEditor('templateEditor', TEMPLATE_URL, 'ace/mode/html', function() {
+        initEditor('logicEditor', LOGIC_URL, 'ace/mode/javascript');    
+    });
+
+    var sourceEditor = ace.edit('sourceEditor');
+    configure(sourceEditor, '', undefined, 'ace/mode/html', true);
+    var javaEditor = ace.edit('javaEditor');
+    configure(javaEditor, '', undefined, 'ace/mode/java', true);
+    
+    var currentState = 'view';
+
+    function reloadEditor(url, editor) {
+        $.ajax(url, {
+            type: 'GET',
+            dataType: 'text',
+            cache: false,
+            processData: false,
+            success: function(data) {
+                console.log('EDITOR DATA: ' + data);
+                editor.setValue(data);
+                editor.clearSelection();
+            },
+            error: function(err) {
+                console.error(err);
+            }
+        });
+    }
+
+    function setupSelector(selector, viewElem, state) {
+        $(selector).click(function() {
+            $('.output-view').hide();
+            $(viewElem).show();
+            currentState = state;
+            refreshOutput();
+        });
+    }
+
+    function refreshFrame() {
+        document.getElementById('outputFrame').contentDocument.location.reload(true);
+    }
+
+    function refreshOutput() {
+        switch (currentState) {
+            case "view":
+                refreshFrame();
+                break;
+            case "source":
+                reloadEditor(PAGE_URL, sourceEditor);
+                break;
+            case "java":
+                $.get(PAGE_URL, function() {
+                    reloadEditor(JAVA_URL, javaEditor);
+                });
+                break;
+        }
+    }
+
+    setupSelector('#view-selector', '#outputFrame', 'view');
+    setupSelector('#source-selector', '#sourceEditor', 'source');
+    setupSelector('#java-selector', '#javaEditor', 'java');
+    
 </script>
+
 </body>
 </html>
