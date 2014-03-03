@@ -1,7 +1,13 @@
-use(function() {
+use(['/apps/q.js'], function(Q) {
+    
+    var props = [];
+    for (var prop in this) {
+        props.push(prop);
+    }
     
     return {
-        message: 'World!'
+        message: props,
+        param1: this.param1
     };
     
 });

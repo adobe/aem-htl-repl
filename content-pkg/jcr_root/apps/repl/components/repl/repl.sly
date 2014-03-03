@@ -118,6 +118,26 @@
     var PAGE_URL = '/content/repl.template.html';
     var JAVA_URL = '/var/classes/apps/repl/components/repl/SightlyJava_template.java';
 
+    function now() {
+        return new Date().getTime();
+    }
+
+    function throttle(limiter, f) {
+        return function() {
+            setTimeout(function() {
+                var callTime = now();
+                if (!limiter.last || callTime - limiter.last > limiter.ms) {
+                    limiter.last = callTime;
+                    f();
+                }
+            }, limiter.ms);
+        };
+    }
+
+    var saveLimiter = {
+        ms: 500
+    };
+
     function saveReload(url, value) {
         $.ajax({
             url: url,
@@ -137,10 +157,10 @@
         editor.setHighlightActiveLine(false);
         var session = editor.getSession();
         if (!readOnly) {
-            session.on('change', function() {
+            session.on('change', throttle(saveLimiter, function() {
                 var content = editor.getValue();
                 saveReload(url, content);
-            });    
+            }));
         }
         editor.setReadOnly(!!readOnly);
         session.setUseWorker(false);
@@ -183,12 +203,13 @@
             cache: false,
             processData: false,
             success: function(data) {
-                console.log('EDITOR DATA: ' + data);
                 editor.setValue(data);
                 editor.clearSelection();
             },
-            error: function(err) {
-                console.error(err);
+            error: function(req, textStatus, message) {
+                console.error(message);
+                editor.setValue(req.responseText);
+                editor.clearSelection();
             }
         });
     }
@@ -215,7 +236,7 @@
                 reloadEditor(PAGE_URL, sourceEditor);
                 break;
             case "java":
-                $.get(PAGE_URL, function() {
+                $.get(PAGE_URL).always(function() {
                     reloadEditor(JAVA_URL, javaEditor);
                 });
                 break;

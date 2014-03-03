@@ -1,7 +1,3 @@
-<html data-sly-use-bean="logic.js">
-    <body>
-        <p data-sly-test="${bean.message}">
-            Hello: ${bean.message}
-        </p>
-    </body>
-</html>
+<div data-sly-use="${'logic.js' @ option, param1='yellow'}">
+    <p>Hello: ${useBean.message}</p>
+</div>
