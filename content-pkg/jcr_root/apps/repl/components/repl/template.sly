@@ -1,3 +1,0 @@
-<div data-sly-use="${'logic.js' @ option, param1='yellow'}">
-    <p>Hello: ${useBean.message}</p>
-</div>

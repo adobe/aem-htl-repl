@@ -113,7 +113,7 @@
 
 <script type="text/javascript">
 
-    var TEMPLATE_URL = '/apps/repl/components/repl/template.sly';
+    var TEMPLATE_URL = '/apps/repl/components/repl/template.html';
     var LOGIC_URL = '/apps/repl/components/repl/logic.js';
     var PAGE_URL = '/content/repl.template.html';
     var JAVA_URL = '/var/classes/apps/repl/components/repl/SightlyJava_template.java';
@@ -139,10 +139,12 @@
     };
 
     function saveReload(url, value) {
+        console.log('Saving to url ' + url + ': ' + value);
         $.ajax({
             url: url,
             type: 'PUT',
             data: value,
+            contentType: 'plain/text',
             success: function() {
                 refreshOutput();
             }

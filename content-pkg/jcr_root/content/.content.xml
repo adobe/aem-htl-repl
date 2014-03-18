@@ -11,16 +11,18 @@
     <projects/>
     <campaigns/>
     <social-component-guide/>
-    <publications/>
-    <phonegap/>
-    <testing_io_sightly/>
-    <repl/>
-    <catalogs/>
-    <mac/>
-    <geometrixx/>
-    <geometrixx_mobile/>
-    <geometrixx-media/>
     <geometrixx-outdoors/>
     <geometrixx-outdoors-mobile/>
     <communities/>
+    <phonegap/>
+    <mac/>
+    <geometrixx-media/>
+    <publications/>
+    <geometrixx/>
+    <geometrixx_mobile/>
+    <test/>
+    <testing_io_sightly/>
+    <testPage/>
+    <catalogs/>
+    <repl/>
 </jcr:root>
