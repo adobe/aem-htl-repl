@@ -111,12 +111,12 @@
 
 
 
-<script type="text/javascript">
+<script type="text/javascript" data-sly-use.classRoot="path-finder.js">
 
     var TEMPLATE_URL = '/apps/repl/components/repl/template.html';
     var LOGIC_URL = '/apps/repl/components/repl/logic.js';
     var PAGE_URL = '/content/repl.template.html';
-    var JAVA_URL = '/var/classes/apps/repl/components/repl/SightlyJava_template.java';
+    var JAVA_URL = '${classRoot @ context="scriptString"}/apps/repl/components/repl/SightlyJava_template.java';
 
     function now() {
         return new Date().getTime();
