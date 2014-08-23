@@ -12,7 +12,7 @@ mvn clean install content-package:install
 Then enter in browser:
 
 ```
-http://localhost:4052/content/repl.html
+http://localhost:4502/content/repl.html
 ```
 
 
