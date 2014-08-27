@@ -1,3 +1,5 @@
-use(function() {
-    return {message: 'hello world'};
+use(function () {
+    return {
+        message: 'hello world'
+    };
 });
