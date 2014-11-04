@@ -1,8 +1,9 @@
 use(function () {
 
-    var CLASS_ROOT_FOLDER  = '/var/classes/sightly';
-    var COMPONENT_PATH     = '/apps/repl/components/repl';
+    var JAVASCRIPT_LOGIC_FILE = 'logic.js';
+    var SIGHTLY_TEMPLATE_FILE = 'template.html';
     var JAVA_TEMPLATE_FILE = 'SightlyJava_template.java';
+    var CLASS_ROOT_FOLDER  = '/var/classes/sightly';
 
     // Recursively walks down the given path until it finds an apps folder, then returns the full path of the Java compiled template file.
     function getAppsPath(res) {
@@ -12,7 +13,7 @@ use(function () {
             // Let's see if one of the children is the apps folder.
             for (var i = 0; i < length; i++) {
                 if (children[i].name === 'apps') {
-                    return res.path + COMPONENT_PATH + '/' + JAVA_TEMPLATE_FILE;
+                    return res.path + component.path + '/' + JAVA_TEMPLATE_FILE;
                 }
             }
 
@@ -24,6 +25,11 @@ use(function () {
     }
 
     return {
+        logicFile: JAVASCRIPT_LOGIC_FILE,
+        templateFile: SIGHTLY_TEMPLATE_FILE,
+        contentPath: currentPage.path + '.' + SIGHTLY_TEMPLATE_FILE,
+        templatePath: component.path + '/' + SIGHTLY_TEMPLATE_FILE,
+        logicPath: component.path + '/' + JAVASCRIPT_LOGIC_FILE,
         classPath: granite.resource.resolve(CLASS_ROOT_FOLDER).then(getAppsPath)
     };
 

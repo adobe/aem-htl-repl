@@ -1,1 +1,1 @@
-style.less
+style.css

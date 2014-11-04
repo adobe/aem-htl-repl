@@ -1,5 +1,5 @@
 use(function () {
     return {
-        message: 'hello world'
+        navRoot: pageManager.getPage('/content/geometrixx/en')
     };
 });

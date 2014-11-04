@@ -5,27 +5,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>Sightly REPL</title>
+        <title>${currentPage.title || currentPage.name}</title>
 
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         
         <output data-sly-call="${clientLib.css @ categories='repl'}" data-sly-unwrap>
     </head>
     
     <body data-sly-use.repl="repl.js">
-        <h1>Sightly <small>Read-Eval-Print Loop</small></h1>
+        <h1>${properties.jcr:description || currentPage.name @ context='html'}</h1>
 
         <div id="main" class="row">
             <div id="input" class="col-xs-6">
                 <div class="editorContainer">
-                    <p class="lead">template.html</p>
-                    <div id="template" class="editor" data-src="/apps/repl/components/repl/template.html" data-mode="ace/mode/html" data-writeable></div>
+                    <p class="lead">${repl.templateFile}</p>
+                    <div id="template" class="editor" data-src="${repl.templatePath @ context='uri'}" data-mode="ace/mode/html" data-writeable></div>
                 </div>
 
                 <div class="editorContainer">
-                    <p class="lead">logic.js</p>
-                    <div id="logic" class="editor" data-src="/apps/repl/components/repl/logic.js" data-mode="ace/mode/javascript" data-writeable></div>
+                    <p class="lead">${repl.logicFile}</p>
+                    <div id="logic" class="editor" data-src="${repl.logicPath @ context='uri'}" data-mode="ace/mode/javascript" data-writeable></div>
                 </div>
             </div>
             <div id="output" class="editorContainer col-xs-6">
@@ -37,15 +37,15 @@
                         <li><a data-toggle="tab" href="#java">Java</a></li>
                     </ul>
                 </div>
-                <div id="source" class="output-view editor" data-src="/content/repl.template.html" data-mode="ace/mode/html"></div>
-                <iframe id="view" class="output-view hidden" src="/content/repl.template.html"></iframe>
-                <div id="java" class="output-view editor hidden" data-src="${repl.classPath}" data-mode="ace/mode/java"></div>
+                <div id="source" class="output-view editor" data-src="${repl.contentPath @ context='uri'}" data-mode="ace/mode/html"></div>
+                <iframe id="view" class="output-view hidden" src="${repl.contentPath}"></iframe>
+                <div id="java" class="output-view editor hidden" data-src="${repl.classPath @ context='uri'}" data-mode="ace/mode/java"></div>
             </div>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.01/ace.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
 
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

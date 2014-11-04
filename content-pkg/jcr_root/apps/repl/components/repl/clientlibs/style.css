@@ -1,0 +1,35 @@
+
+body {
+    margin: 0 10px;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+iframe {
+    border: none;
+    width: 100%;
+}
+
+#input .editor {
+    height: 300px;
+}
+
+#output .output-view {
+    height: 650px;
+}
+
+#output .nav {
+    margin-top: -3px;
+}
+
+@media (max-width: 768px) {
+    #output .lead {
+        display: none;
+    }
+    
+    #output .nav {
+        margin: -8px 0 10px;
+    }
+}

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
+<!--/* Calling the server-side JS script to do what Sightly cannot */-->
+<html data-sly-use.logic="logic.js">
 <head>
-    <title>Sightly REPL</title>
+    <!--/* Expressions allow to easily output variables */-->
+    <title>${currentPage.title}</title>
     <meta charset="utf-8">
 </head>
-<body data-sly-use.obj="logic.js">
-
-    <p>Message is ${obj.message}</p>
-
+<body>
+    <!--/* To allow some HTML, use following context option */-->
+    <p>${properties.jcr:description @ context='html'}</p>
+    
+    <!--/* Iterating over any collection or iterable is easy */-->
+    <ul data-sly-list="${logic.navRoot.listChildren}">
+        <li><a href="${item.path}.html">${item.title}</a></li>
+    </ul>
 </body>
 </html>

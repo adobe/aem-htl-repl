@@ -1,10 +1,11 @@
-/* global jQuery, ace, document, setTimeout, clearTimeout, console */
+/* global jQuery, ace, setTimeout, clearTimeout, console */
 
 jQuery(function ($) {
 
     'use strict';
 
     var currentState = 'source';
+    var contentPath = $('#view').attr('src');
 
     // Limits the number of times the function gets called for event handlers
     function debounce(fn, delay) {
@@ -104,7 +105,8 @@ jQuery(function ($) {
         if (Editor.all[currentState] !== undefined) {
             Editor.all[currentState].loadContent();
         } else {
-            document.getElementsByTagName('iframe')[0].contentDocument.location.reload(true);
+            // If the current state is not an editor, then it's the iFrame with the page preview
+            $('#view').attr('src', contentPath);
         }
     }
 
