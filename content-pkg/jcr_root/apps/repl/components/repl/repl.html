@@ -37,8 +37,8 @@
                         <li><a data-toggle="tab" href="#java">Java</a></li>
                     </ul>
                 </div>
-                <div id="source" class="output-view editor" data-src="${repl.contentPath @ context='uri'}" data-mode="ace/mode/html"></div>
-                <iframe id="view" class="output-view hidden" src="${repl.contentPath}"></iframe>
+                <div id="source" class="output-view editor" data-src="${repl.contentPath @ context='uri'}?wcmmode=disabled" data-mode="ace/mode/html"></div>
+                <iframe id="view" class="output-view hidden" src="${repl.contentPath}?wcmmode=disabled"></iframe>
                 <div id="java" class="output-view editor hidden" data-src="${repl.classPath @ context='uri'}" data-mode="ace/mode/java"></div>
             </div>
         </div>
@@ -51,7 +51,7 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
+
         <output data-sly-call="${clientLib.js @ categories='repl'}" data-sly-unwrap>
     </body>
 </html>
