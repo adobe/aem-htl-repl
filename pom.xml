@@ -20,17 +20,20 @@
     <!-- ======================================================================= -->
     <!-- P A R E N T   P R O J E C T                                             -->
     <!-- ======================================================================= -->
+    <!-- 
     <parent>
         <groupId>com.adobe.granite</groupId>
         <artifactId>parent</artifactId>
         <version>32</version>
         <relativePath/>
     </parent>
+    -->
 
     <!-- ======================================================================= -->
     <!-- P R O J E C T                                                           -->
     <!-- ======================================================================= -->
-    <artifactId>com.adobe.granite.sightly.repl</artifactId>
+    <groupId>com.adobe.granite.sightly.repl</groupId>
+    <artifactId>aem-sightly-repl</artifactId>
     <packaging>content-package</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -49,6 +52,37 @@
         <vault.package.group>adobe/granite</vault.package.group>
         <vault.package.company>Adobe Systems</vault.package.company>
     </properties>
+    
+    <profiles>
+        <profile>
+            <id>remote</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- we don't want the remote resources copied to target/classes
+                         (attached) this would add them below the jcr_root, too.
+                    -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-remote-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>process</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/vault-work</outputDirectory>
+                                    <attached>false</attached>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <resources>
@@ -78,25 +112,6 @@
         </resources>
 
         <plugins>
-            <!-- we don't want the remote resources copied to target/classes
-                 (attached) this would add them below the jcr_root, too.
-            -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-remote-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/vault-work</outputDirectory>
-                            <attached>false</attached>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- use the buildnumber plugin to generate a ISO8601 timestamp -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -174,6 +189,14 @@
 
         </plugins>
     </build>
-
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>adobe</id>
+            <name>Adobe Public Repository</name>
+            <url>http://repo.adobe.com/nexus/content/groups/public/</url>
+            <layout>default</layout>
+        </pluginRepository>
+    </pluginRepositories>
     
 </project>
