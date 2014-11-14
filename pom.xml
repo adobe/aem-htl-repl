@@ -38,9 +38,9 @@
     <description>Playground environment for Sightly</description>
 
     <scm>
-        <connection>scm:git:git@git.corp.adobe.com:mdanila/sightly-granite-repl.git</connection>
-        <developerConnection>scm:git:git@git.corp.adobe.com:mdanila/sightly-granite-repl.git</developerConnection>
-        <url>https://git.corp.adobe.com/mdanila/sightly-granite-repl</url>
+        <connection>scm:git:https://github.com/Adobe-Marketing-Cloud/aem-sightly-repl.git</connection>
+        <developerConnection>scm:git:git@github.com:Adobe-Marketing-Cloud/aem-sightly-repl.git</developerConnection>
+        <url>https://github.com/Adobe-Marketing-Cloud/aem-sightly-repl</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -175,5 +175,34 @@
         </plugins>
     </build>
 
-    
+    <repositories>
+        <repository>
+            <id>adobe-public-releases</id>
+            <name>Adobe Public Repository</name>
+            <url>http://repo.adobe.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>adobe-public-releases</id>
+            <name>Adobe Public Repository</name>
+            <url>http://repo.adobe.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
 </project>
