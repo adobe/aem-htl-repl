@@ -2,7 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        jcr:description="Sightly &lt;small>Read-Eval-Print Loop&lt;/small>"
+        jcr:description="Read-Eval-Print Loop"
         jcr:primaryType="cq:PageContent"
         jcr:title="Sightly REPL"
         sling:resourceType="repl/components/repl"/>

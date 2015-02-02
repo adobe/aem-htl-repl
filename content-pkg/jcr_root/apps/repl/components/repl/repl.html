@@ -10,11 +10,12 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         
-        <output data-sly-call="${clientLib.css @ categories='repl'}" data-sly-unwrap>
+        <sly data-sly-call="${clientLib.css @ categories='repl'}"/>
     </head>
     
     <body data-sly-use.repl="repl.js">
-        <h1>${properties.jcr:description || currentPage.name @ context='html'}</h1>
+        <div id="logo">&nbsp;</div>
+        <h1><small>${properties.jcr:description || currentPage.name @ context='html'}</small></h1>
 
         <div id="main" class="row">
             <div id="input" class="col-xs-6">
@@ -52,6 +53,6 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <output data-sly-call="${clientLib.js @ categories='repl'}" data-sly-unwrap>
+        <sly data-sly-call="${clientLib.js @ categories='repl'}"/>
     </body>
 </html>
