@@ -18,7 +18,7 @@ use(function () {
                 }
             }
 
-            // If apps wasn't found but there's only one child folder, then let's recrusively walk that one down.
+            // If apps wasn't found but there's only one child folder, then let's recursively walk that one down.
             if (length === 1) {
                 return getAppsPath(children[0]);
             }
@@ -31,7 +31,13 @@ use(function () {
         contentPath: currentPage.path + '.' + SIGHTLY_TEMPLATE_FILE,
         templatePath: component.path + '/' + SIGHTLY_TEMPLATE_FILE,
         logicPath: component.path + '/' + JAVASCRIPT_LOGIC_FILE,
-        classPath: granite.resource.resolve(CLASS_ROOT_FOLDER).then(getAppsPath)
+        classPath: granite.resource.resolve(CLASS_ROOT_FOLDER).then(
+            getAppsPath,
+            function () {
+                // we're running on a pre 6.1 instance
+                return granite.resource.resolve('/var/classes/sightly').then(getAppsPath);
+            }
+        )
     };
 
 });
