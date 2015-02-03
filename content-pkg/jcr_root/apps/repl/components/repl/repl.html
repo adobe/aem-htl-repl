@@ -14,8 +14,8 @@
     </head>
     
     <body data-sly-use.repl="repl.js">
-        <div id="logo">&nbsp;</div>
-        <h1><small>${properties.jcr:description || currentPage.name @ context='html'}</small></h1>
+        <div id="logo" title="${properties.jcr:title}">&nbsp;</div>
+
 
         <div id="main" class="row">
             <div id="input" class="col-xs-6">
