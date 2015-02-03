@@ -14,7 +14,7 @@ use(function () {
             // Let's see if one of the children is the apps folder.
             for (var i = 0; i < length; i++) {
                 if (children[i].name === 'apps') {
-                    return res.path + component.path + '/' + JAVA_TEMPLATE_FILE;
+                    return request.getContextPath() + res.path + component.path + '/' + JAVA_TEMPLATE_FILE;
                 }
             }
 
@@ -28,9 +28,9 @@ use(function () {
     return {
         logicFile: JAVASCRIPT_LOGIC_FILE,
         templateFile: SIGHTLY_TEMPLATE_FILE,
-        contentPath: currentPage.path + '.' + SIGHTLY_TEMPLATE_FILE,
-        templatePath: component.path + '/' + SIGHTLY_TEMPLATE_FILE,
-        logicPath: component.path + '/' + JAVASCRIPT_LOGIC_FILE,
+        contentPath: request.getContextPath() + currentPage.path + '.' + SIGHTLY_TEMPLATE_FILE,
+        templatePath: request.getContextPath() + component.path + '/' + SIGHTLY_TEMPLATE_FILE,
+        logicPath: request.getContextPath() + component.path + '/' + JAVASCRIPT_LOGIC_FILE,
         classPath: granite.resource.resolve(CLASS_ROOT_FOLDER).then(
             getAppsPath,
             function () {

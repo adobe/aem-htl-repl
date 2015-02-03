@@ -64,14 +64,26 @@ jQuery(function ($) {
 
         that.saveChanges = function (cb) {
             if (isWriteable) {
+                var csrfToken = '';
                 $.ajax({
-                    url: url,
-                    type: 'PUT',
-                    data: editor.getValue(),
-                    contentType: 'plain/text',
-                    success: reloadOutputCallback,
-                    complete: cb
-                });
+                    url: Granite.HTTP.externalize('/libs/granite/csrf/token.json'),
+                    type: 'GET'
+                }).always(
+                    function (data, testStatus, jqXHR) {
+                        if (data && data.token) {
+                            csrfToken = data.token;
+                        }
+                        $.ajax({
+                            url: url,
+                            type: 'PUT',
+                            data: editor.getValue(),
+                            contentType: 'plain/text',
+                            success: reloadOutputCallback,
+                            complete: cb,
+                            headers: csrfToken !== '' ? {'aem_csrf_token' : csrfToken} : {}
+                        });
+                    }
+                );
             }
         };
 
