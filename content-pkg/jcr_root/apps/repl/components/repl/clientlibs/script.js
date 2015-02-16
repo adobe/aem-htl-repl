@@ -80,7 +80,7 @@ jQuery(function ($) {
                             contentType: 'plain/text',
                             success: reloadOutputCallback,
                             complete: cb,
-                            headers: csrfToken !== '' ? {'aem_csrf_token' : csrfToken} : {}
+                            headers: csrfToken !== '' ? {'CSRF-Token' : csrfToken} : {}
                         });
                     }
                 );
