@@ -32,7 +32,7 @@
     <!-- ======================================================================= -->
     <artifactId>com.adobe.granite.sightly.repl</artifactId>
     <packaging>content-package</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2</version>
 
     <name>Sightly Granite REPL</name>
     <description>Playground environment for Sightly</description>
