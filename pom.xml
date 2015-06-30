@@ -149,16 +149,6 @@
 
 
                     <dependencies>
-                        <dependency>
-                            <group>day/cq60/product</group>
-                            <name>cq-content</name>
-                            <version>[6.0.0,)</version>
-                        </dependency>
-                        <dependency>
-                            <group>day/cq60/product</group>
-                            <name>hobbes-js</name>
-                            <version>[1.0.0,)</version>
-                        </dependency>
                     </dependencies>
                 </configuration>
             </plugin>
