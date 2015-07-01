@@ -1,4 +1,7 @@
 #AEM Sightly Read–Eval–Print Loop
+
+A live code editing environment for [Sightly](http://docs.adobe.com/docs/en/aem/6-1/develop/sightly.html) templates with optional server-side JavaScript logic, executed on an Adobe Experience Manager instance. This little tool is great for learning Sightly and for experimenting with it, because the resulting output is displayed as you type.
+
 ![](https://raw.githubusercontent.com/wiki/adobe-marketing-cloud/aem-sightly-repl/screenshots/repl.png)
 
 ## Prerequisites
