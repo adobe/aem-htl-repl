@@ -7,6 +7,8 @@ Adobe Experience Manager 6+, ideally running on port 4502 (if on a different por
 
 ## Install
 
+Based on what you feel most comfortable with, pick one of the two following methods.
+
 #### Click Method
 
 1. Download the built package:
