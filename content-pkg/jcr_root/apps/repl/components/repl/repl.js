@@ -4,7 +4,7 @@ use(function () {
     var SIGHTLY_TEMPLATE_FILE = 'template.html';
     var JAVA_TEMPLATE_FILE = 'SightlyJava_template.java';
     var slingSettings = sling.getService(Packages.org.apache.sling.settings.SlingSettingsService);
-    var CLASS_ROOT_FOLDER  = '/var/classes/' + slingSettings.getSlingId() + '/sightly';
+    var CLASS_ROOT_FOLDER = '/var/classes/' + slingSettings.getSlingId() + '/sightly';
 
     // Recursively walks down the given path until it finds an apps folder, then returns the full path of the Java compiled template file.
     function getAppsPath(res) {
