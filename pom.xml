@@ -130,6 +130,7 @@
             <plugin>
                 <groupId>com.day.jcr.vault</groupId>
                 <artifactId>content-package-maven-plugin</artifactId>
+                <version>0.0.24</version>
                 <extensions>true</extensions>
                 <configuration>
                     <group>${vault.package.group}</group>
