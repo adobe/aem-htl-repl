@@ -16,7 +16,6 @@
     <body data-sly-use.repl="repl.js">
         <div id="logo" title="${properties.jcr:title}">&nbsp;</div>
 
-
         <div id="main" class="row">
             <div id="input" class="col-xs-6">
                 <div class="editorContainer">
@@ -35,21 +34,15 @@
                     <ul class="nav nav-pills navbar-right">
                         <li class="active"><a data-toggle="tab" href="#source">Source</a></li>
                         <li><a data-toggle="tab" href="#view">View</a></li>
-                        <li><a data-toggle="tab" href="#java">Java</a></li>
                     </ul>
                 </div>
                 <div id="source" class="output-view editor" data-src="${repl.contentPath @ context='uri'}?wcmmode=disabled" data-mode="ace/mode/html"></div>
                 <iframe id="view" class="output-view hidden" src="${repl.contentPath}?wcmmode=disabled"></iframe>
-                <div id="java" class="output-view editor hidden" data-src="${repl.classPath @ context='uri'}" data-mode="ace/mode/java"></div>
             </div>
         </div>
 
         <sly data-sly-call="${clientLib.js @ categories='repl'}" data-sly-unwrap></sly>
         <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
     </body>
 </html>
