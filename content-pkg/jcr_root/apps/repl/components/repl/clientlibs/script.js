@@ -1,7 +1,5 @@
 /* global jQuery, ace, setTimeout, clearTimeout, console */
-
-jQuery(function ($) {
-
+(function($) {
     'use strict';
 
     var currentState = 'source';
@@ -64,27 +62,20 @@ jQuery(function ($) {
 
         that.saveChanges = function (cb) {
             if (isWriteable) {
-                var csrfToken = '';
                 $.ajax({
-                    url: Granite.HTTP.externalize('/libs/granite/csrf/token.json'),
-                    type: 'GET'
-                }).always(
-                    function (data, testStatus, jqXHR) {
-                        if (data && data.token) {
-                            csrfToken = data.token;
-                        }
-                        $.ajax({
-                            url: url,
-                            type: 'PUT',
-                            data: editor.getValue(),
-                            contentType: 'plain/text',
-                            success: reloadOutputCallback,
-                            complete: cb,
-                            headers: csrfToken !== '' ? {'CSRF-Token' : csrfToken} : {}
-                        });
-                    }
-                );
+                    url: url,
+                    type: 'PUT',
+                    data: editor.getValue(),
+                    contentType: 'plain/text',
+                    success: reloadOutputCallback,
+                    complete: cb
+                }).fail(function (req, textStatus, message) {
+                    editor.setValue(req.responseText);
+                    editor.clearSelection();
+                    console.error(message);
+                });
             }
+
         };
 
         that.loadContent = function (cb) {
@@ -93,16 +84,14 @@ jQuery(function ($) {
                 dataType: 'text',
                 cache: false,
                 processData: false,
-                success: function (data) {
-                    editor.setValue(data);
-                    editor.clearSelection();
-                },
-                error: function (req, textStatus, message) {
-                    editor.setValue(req.responseText);
-                    editor.clearSelection();
-                    console.error(message);
-                },
                 complete: cb
+            }).success(function (data) {
+                editor.setValue(data);
+                editor.clearSelection();
+            }).fail(function (req, textStatus, message) {
+                editor.setValue(req.responseText);
+                editor.clearSelection();
+                console.error(message);
             });
         };
 
@@ -145,5 +134,5 @@ jQuery(function ($) {
     }
 
     init();
+}(jQuery));
 
-});
