@@ -4,6 +4,6 @@
     <jcr:content
         jcr:description="Read-Eval-Print Loop"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Sightly REPL"
+        jcr:title="HTL REPL"
         sling:resourceType="repl/components/repl"/>
 </jcr:root>

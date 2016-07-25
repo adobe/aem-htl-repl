@@ -10,7 +10,7 @@
         <sly data-sly-call="${clientLib.css @ categories='repl'}" data-sly-unwrap></sly>
     </head>
     <body data-sly-use.repl="repl.js">
-        <div id="logo" title="${properties.jcr:title}">&nbsp;</div>
+        <div id="logo" title="${properties.jcr:descriptioon}">${properties.jcr:title}</div>
         <div class="container-fluid">
             <div id="main" class="row">
                 <div id="input" class="col-xs-6">
@@ -29,7 +29,6 @@
                         <ul class="nav nav-pills navbar-right">
                             <li class="active"><a data-toggle="tab" href="#source">Source</a></li>
                             <li><a data-toggle="tab" href="#view">View</a></li>
-                            <li><a data-toggle="tab" href="#java">Java</a></li>
                         </ul>
                     </div>
                     <div id="source" class="output-view editor" data-src="${repl.contentPath @ context='uri'}?wcmmode=disabled" data-mode="ace/mode/html"></div>

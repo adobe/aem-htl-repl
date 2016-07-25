@@ -8,7 +8,9 @@ iframe {
 }
 #logo {
     min-height: 100px;
-    background: url('./images/sightly.svg') no-repeat 50% 100%;
+    font-size: xx-large;
+    text-align: center;
+    width: 100%;
 }
 
 #input {
