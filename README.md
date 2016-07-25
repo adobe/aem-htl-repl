@@ -1,6 +1,6 @@
 #AEM HTL Read–Eval–Print Loop
 
-A live code editing environment for [HTL](https://docs.adobe.com/docs/en/htl.html) templates with optional server-side JavaScript logic, executed on an Adobe Experience Manager instance. This little tool is great for learning HTTL and for experimenting with it, because the resulting output is displayed as you type.
+A live code editing environment for [HTL](https://docs.adobe.com/docs/en/htl.html) templates with optional server-side JavaScript logic, executed on an Adobe Experience Manager instance. This little tool is great for learning HTL and for experimenting with it, because the resulting output is displayed as you type.
 
 ![](https://raw.githubusercontent.com/wiki/adobe-marketing-cloud/aem-htl-repl/screenshots/repl.png)
 
