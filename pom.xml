@@ -34,13 +34,13 @@
     <packaging>content-package</packaging>
     <version>1.0.3-SNAPSHOT</version>
 
-    <name>Sightly Granite REPL</name>
-    <description>Playground environment for Sightly</description>
+    <name>HTL Read–Eval–Print Loop</name>
+    <description>Playground environment for HTL</description>
 
     <scm>
-        <connection>scm:git:https://github.com/Adobe-Marketing-Cloud/aem-sightly-repl.git</connection>
-        <developerConnection>scm:git:git@github.com:Adobe-Marketing-Cloud/aem-sightly-repl.git</developerConnection>
-        <url>https://github.com/Adobe-Marketing-Cloud/aem-sightly-repl</url>
+        <connection>scm:git:https://github.com/Adobe-Marketing-Cloud/aem-htl-repl.git</connection>
+        <developerConnection>scm:git:git@github.com:Adobe-Marketing-Cloud/aem-htl-repl.git</developerConnection>
+        <url>https://github.com/Adobe-Marketing-Cloud/aem-htl-repl</url>
         <tag>HEAD</tag>
     </scm>
 
