@@ -32,7 +32,7 @@
     <!-- ======================================================================= -->
     <artifactId>com.adobe.granite.sightly.repl</artifactId>
     <packaging>content-package</packaging>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4</version>
 
     <name>HTL Read–Eval–Print Loop</name>
     <description>Playground environment for HTL</description>
