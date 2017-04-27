@@ -15,7 +15,7 @@ Based on what you feel most comfortable with, pick one of the two following meth
 #### Click Method
 
 1. Download the built package:
-[com.adobe.granite.sightly.repl-1.0.4.zip](https://github.com/Adobe-Marketing-Cloud/aem-htl-repl/releases/download/aem-sightly-repl-1.0.4/com.adobe.granite.sightly.repl-1.0.4.zip)
+[com.adobe.granite.sightly.repl-1.0.4.zip](https://github.com/Adobe-Marketing-Cloud/aem-htl-repl/releases/download/aem-htl-repl-1.0.4/com.adobe.granite.sightly.repl-1.0.4.zip)
 2. On your running AEM instance, go to [Package Manager](http://localhost:4502/crx/packmgr), click on **Upload Package**, browse to the previously downloaded package, and hit **OK**.
 3. This will make a new package appear, called **com.adobe.granite.sightly.repl-1.0.4.zip**. Don't mind the missing dependencies, simply click the **Install** button and confirm.
 
