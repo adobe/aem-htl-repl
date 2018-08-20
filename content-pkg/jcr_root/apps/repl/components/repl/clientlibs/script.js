@@ -21,7 +21,7 @@
     }
 
     /**
-     * The editor object, it will take it's configuration from following attributes:
+     * The editor object, it will take its configuration from following attributes:
      * id: The unique identifier of the editor (will be used as key in the Editor.all map object).
      * data-src: The URL from which the editor's content has to be loaded.
      * data-mode: The ACE editor's language mode.
@@ -52,12 +52,7 @@
             editor.setReadOnly(!isWriteable);
             editor.session.setUseWorker(false);
             editor.session.setMode(mode);
-
-            if (element.is(':visible')) {
-                that.loadContent(attachSaveHandler);
-            } else {
-                attachSaveHandler();
-            }
+            that.loadContent(attachSaveHandler);
         }
 
         that.saveChanges = function (cb) {
@@ -117,16 +112,29 @@
             new Editor(this, reloadOutput);
         });
 
-        // Setup output tabs
-        var allTargets = $('.output-view');
-        $('a[data-toggle=tab]').each(function () {
+        // Setup Use-API editing tabs
+        var editors = $('.use-api');
+        $('#use-api a[data-toggle=tab]').each(function () {
             var link = $(this);
-            var target = allTargets.filter(link.attr('href'));
+            var href = link.attr('href');
+            var target = editors.filter(href + '-editor');
+
+            link.click(function () {
+                editors.addClass('hidden');
+                target.removeClass('hidden');
+            });
+        });
+
+        // Setup output tabs
+        var outputTargets = $('.output-view');
+        $('#output a[data-toggle=tab]').each(function () {
+            var link = $(this);
+            var target = outputTargets.filter(link.attr('href'));
             var state = target.attr('id');
 
             link.click(function () {
                 currentState = state;
-                allTargets.addClass('hidden');
+                outputTargets.addClass('hidden');
                 target.removeClass('hidden');
                 reloadOutput();
             });

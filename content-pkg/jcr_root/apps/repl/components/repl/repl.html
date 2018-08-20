@@ -19,9 +19,22 @@
                         <p class="lead">${repl.templateFile}</p>
                         <div id="template" class="editor" data-src="${repl.templatePath @ context='uri'}" data-mode="ace/mode/html" data-writeable></div>
                     </div>
-                    <div class="editorContainer">
-                        <p class="lead">${repl.logicFile}</p>
-                        <div id="logic" class="editor" data-src="${repl.logicPath @ context='uri'}" data-mode="ace/mode/javascript" data-writeable></div>
+                    <div id="use-api">
+                        <div class="clearfix">
+                            <p class="lead pull-left">Use-API</p>
+                            <ul class="nav nav-pills navbar-right">
+                                <li class="active"><a data-toggle="tab" href="#javascript">Javascript</a></li>
+                                <li><a data-toggle="tab" href="#java">Java</a></li>
+                            </ul>
+                        </div>
+                        <div id="javascript-editor" class="editorContainer use-api">
+                            <p class="lead">logic.js</p>
+                            <div id="javascript" class="editor" data-src="${request.contextPath @ context='uri'}${component.path @ context='uri'}${'/logic.js' @ context='uri'}" data-mode="ace/mode/javascript" data-writeable></div>
+                        </div>
+                        <div id="java-editor" class="editorContainer use-api hidden">
+                            <p class="lead">Logic.java</p>
+                            <div id="java" class="editor" data-src="${request.contextPath @ context='uri'}${component.path @ context='uri'}${'/Logic.java' @ context='uri'}" data-mode="ace/mode/java" data-writeable></div>
+                        </div>
                     </div>
                 </div>
                 <div id="output" class="editorContainer col-xs-6">
