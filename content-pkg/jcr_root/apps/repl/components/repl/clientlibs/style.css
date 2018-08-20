@@ -8,9 +8,7 @@ iframe {
 }
 #logo {
     min-height: 100px;
-    font-size: xx-large;
-    text-align: center;
-    width: 100%;
+    background: url(/etc.clientlibs/repl/components/repl/clientlibs/resources/htl.svg) no-repeat 50% 100%;
 }
 
 #input {
