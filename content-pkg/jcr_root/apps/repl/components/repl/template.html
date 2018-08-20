@@ -12,7 +12,7 @@
     
     <!--/* Iterating over any collection or iterable is easy */-->
     <ul data-sly-list="${logic.navRoot.listChildren}">
-        <li><a href="${item.path}.html">${item.title}</a></li>
+        <li><a href="${item.path @ extension='html'}">${item.title}</a></li>
     </ul>
 </body>
 </html>
