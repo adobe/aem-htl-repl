@@ -27,4 +27,4 @@ Based on what you feel most comfortable with, pick one of the two following meth
 
 ## Run
 
-On your AEM instance, got to following URL: [/content/repl.html](http://localhost:4502/content/repl.html)
+On your AEM instance, go to the following URL: [/content/repl.html](http://localhost:4502/content/repl.html)
