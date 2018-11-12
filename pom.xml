@@ -38,9 +38,9 @@
     <description>Playground environment for HTL</description>
 
     <scm>
-        <connection>scm:git:https://github.com/Adobe-Marketing-Cloud/aem-htl-repl.git</connection>
-        <developerConnection>scm:git:git@github.com:Adobe-Marketing-Cloud/aem-htl-repl.git</developerConnection>
-        <url>https://github.com/Adobe-Marketing-Cloud/aem-htl-repl</url>
+        <connection>scm:git:https://github.com/adobe/aem-htl-repl.git</connection>
+        <developerConnection>scm:git:git@github.com:adobe/aem-htl-repl.git</developerConnection>
+        <url>https://github.com/adobe/aem-htl-repl</url>
         <tag>HEAD</tag>
     </scm>
 

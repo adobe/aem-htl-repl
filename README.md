@@ -2,7 +2,7 @@
 
 A live code editing environment for [HTL](https://docs.adobe.com/docs/en/htl.html) templates with optional server-side JavaScript logic, executed on an Adobe Experience Manager instance. This little tool is great for learning HTL and for experimenting with it, because the resulting output is displayed as you type.
 
-![](https://raw.githubusercontent.com/wiki/adobe-marketing-cloud/aem-htl-repl/screenshots/repl.png)
+![](https://raw.githubusercontent.com/wiki/adobe/aem-htl-repl/screenshots/repl.png)
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ Based on what you feel most comfortable with, pick one of the two following meth
 #### Click Method
 
 1. Download the built package:
-[com.adobe.granite.sightly.repl-1.0.4.zip](https://github.com/Adobe-Marketing-Cloud/aem-htl-repl/releases/download/aem-htl-repl-1.0.4/com.adobe.granite.sightly.repl-1.0.4.zip)
+[com.adobe.granite.sightly.repl-1.0.4.zip](https://github.com/adobe/aem-htl-repl/releases/download/aem-htl-repl-1.0.4/com.adobe.granite.sightly.repl-1.0.4.zip)
 2. On your running AEM instance, go to [Package Manager](http://localhost:4502/crx/packmgr), click on **Upload Package**, browse to the previously downloaded package, and hit **OK**.
 3. This will make a new package appear, called **com.adobe.granite.sightly.repl-1.0.4.zip**. Don't mind the missing dependencies, simply click the **Install** button and confirm.
 
